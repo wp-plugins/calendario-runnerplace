@@ -119,17 +119,15 @@ class RPRC_widget extends WP_Widget {
             }
 
             select {
-                width: 75%;
-                padding: 0.4em 0px 0px 0px;
+                width: 95%;
                 text-indent: 0.01px;
                 text-overflow: "";
                 height: 30px;
                 margin-bottom: 2px;
                 vertical-align: middle;
-                font-size: 0.875em;
-                font-style: italic;
-                font-weight: 400;
-
+                font-size: 1em;
+                font-weight: 500;
+                padding: 0.4em;
             }
 
         </style>
@@ -178,38 +176,43 @@ class RPRC_widget extends WP_Widget {
             <!-- ***** LISTA CARRERAS ***** -->
             <div id="racesList" class="races_list">
             <?php 
-            //$RPserver="http://sportmap.com/sportmap/";
             $RPserver="http://www.runnerplace.com/";
-            $URL = $RPserver."api/list_races/$region/month/$sport_type";
-            $races = file_get_contents($URL);
+            $url = $RPserver."api/list_races/$region/month/$sport_type";
+            
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_HEADER, false);
+            $races = curl_exec($curl);
+            curl_close($curl);
+   
             $races = json_decode($races,true); 
+            
+            
             ?>
             <ul id="contained-list" class="contained-list">
                 <?php
-                $marker_id = 0;
                 if ($RPlinks=="RPlinks") {
-                    foreach($races as $race) {
+                    for($i=0;$i<count($races);$i++){ 
                         echo "
                             <li class='race'>
-                            <a rel='nofollow' href='".$RPserver.$race['RPuri']."' target=\"_blank\">
-                                <div><span class='title' title='".$race['title']."'>".$race['title']."</span><br/>
+                            <a rel='nofollow' href='".$RPserver.$races[$i]['RPuri']."' target=\"_blank\">
+                                <div><span class='title' title='".$races[$i]['title']."'>".$races[$i]['title']."</span><br/>
                             </a>
-                            <span class='small date'>". $race['read_start_date'] ."</span>
-                            <span class='small date'> - ". $race['address'] ."</span>
+                            <span class='small date'>". $races[$i]['read_start_date'] ."</span>
+                            <span class='small date'> - ". $races[$i]['address'] ."</span>
                           </div>
                         </li>";
-                    $marker_id++;
                     }                    
                 } else {
-                    foreach($races as $race) {
+                    for($i=0;$i<count($races);$i++){ 
                     echo "
                         <li class='race'>
-                        <div><span class='title' title='".$race['title']."'>".$race['title']."</span><br/>
-                        <span class='small date'>". $race['read_start_date'] ."</span>
-                        <span class='small date'> - ". $race['address'] ."</span>
+                        <div><span class='title' title='".$races[$i]['title']."'>".$races[$i]['title']."</span><br/>
+                        <span class='small date'>". $races[$i]['read_start_date'] ."</span>
+                        <span class='small date'> - ". $races[$i]['address'] ."</span>
                       </div>
                     </li>";
-                $marker_id++;
                     }
                 }
 
