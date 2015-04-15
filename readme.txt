@@ -28,8 +28,8 @@ Esta sección describe cómo se instala el widget y cómo hacerlo funcionar
 
 == Screenshots ==
 
-1. widget_admin.png Configuración del widget
-2. widget_runnerplace_calendar.png. Apariencia del widget en la barra lateral.
+1. Configuración del widget
+2. Apariencia del widget en la barra lateral.
 
 == Changelog ==
 
