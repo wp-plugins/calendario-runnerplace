@@ -4,7 +4,7 @@
 Plugin Name: RunnerPlace Calendar Plugin
 Plugin URI: http://www.runnerplace.com/
 Description: Todo el calendario de carreras populares en tu web.
-Version: 1.0.0
+Version: 1.1.2
 Author: RunnerPlace
 Author URI: http://www.runnerplace.com/
 License: A short license name. Example: GPL2
