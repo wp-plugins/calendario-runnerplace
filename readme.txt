@@ -12,7 +12,7 @@ Utiliza el calendario de carreras populares de RunnerPlace para tenerlo actualiz
 == Description ==
 Ten el calendario de carreras populares (running, duatlones, triatlones, acuatlones, trails) de España en tu web.
 
-Utiliza la API de RunnerPlace para que tus usuarios puedan buscar las carreras populares desde tu propia página web. 
+Utiliza la API de [RunnerPlace][http://www.runnerplace.com] para que tus usuarios puedan buscar las carreras populares desde tu propia página web.
 
 Filtros por Provincia, Tipo de Carrera y Mes.
 
